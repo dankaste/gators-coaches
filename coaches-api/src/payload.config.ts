@@ -4,6 +4,7 @@ import path from 'path';
 import Users from './collections/Users';
 import Coaches from "./collections/Coaches";
 import Riders from "./collections/Riders";
+import Teams from "./collections/Teams";
 
 export default buildConfig({
   serverURL: 'http://localhost:3000',
@@ -13,7 +14,8 @@ export default buildConfig({
   collections: [
     Users,
     Coaches,
-    Riders
+    Riders,
+    Teams
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
