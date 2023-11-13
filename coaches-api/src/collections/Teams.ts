@@ -4,6 +4,7 @@ import Levels from "../options/levels";
 const Teams: CollectionConfig = {
     slug: 'teams',
     admin: {
+
     },
     access: {
         read: () => true

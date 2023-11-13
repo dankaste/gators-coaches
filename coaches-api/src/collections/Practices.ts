@@ -53,7 +53,8 @@ const Practices: CollectionConfig = {
                             name: 'team',
                             type: 'relationship',
                             relationTo: ['teams']
-                        }
+                        },
+
                     ]
                 },
                 {

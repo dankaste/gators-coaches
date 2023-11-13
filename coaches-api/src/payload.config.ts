@@ -7,6 +7,9 @@ import Teams from "./collections/Teams";
 import Practices from "./collections/Practices";
 import PracticeZones from "./collections/PracticeZones";
 import PracticeLocations from "./collections/PracticeLocations";
+import Roster from "./collections/Roster";
+import RosterFile from "./collections/RosterFile";
+import Parents from "./collections/Parents";
 
 export default buildConfig({
   serverURL: 'http://localhost:3000',
@@ -20,7 +23,10 @@ export default buildConfig({
     Teams,
     Practices,
     PracticeZones,
-    PracticeLocations
+    PracticeLocations,
+    Parents,
+    Roster,
+    RosterFile
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

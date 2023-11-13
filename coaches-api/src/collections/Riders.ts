@@ -1,14 +1,24 @@
 import { CollectionConfig } from "payload/types";
+import Levels from "../options/levels";
+import gender from "../options/gender";
+import Gender from "../options/gender";
+import Grade from "../options/grade";
+import RidingExperience from "../options/ridingExperience";
 
 const Riders: CollectionConfig = {
     slug: 'riders',
     admin: {
-
+        useAsTitle: 'fullName'
     },
     access: {
         read: () => true
     },
     fields: [
+        {
+          name: "fullName",
+          type: "text",
+          required: true
+        },
         {
             name: "firstName",
             type: "text",
@@ -24,25 +34,42 @@ const Riders: CollectionConfig = {
             type: "date"
         },
         {
+            name: "gender",
+            type: "select",
+            options: Gender
+        },
+        {
+            name: "risingGrade",
+            type: "select",
+            options: Grade
+        },
+        {
+            name: "plateNumber",
+            type: "number"
+        },
+        {
+            name: "level",
+            type: 'select',
+            options: Levels
+        },
+        {
+            name: "ridingExperience",
+            type: 'select',
+            options: RidingExperience,
+            hasMany: true
+        },
+        {
             name: "parent",
-            type: "group",
-            interfaceName: "parent",
+            type: "relationship",
+            relationTo: "parents"
+        },
+        {
+            name: "notes",
+            type: "array",
             fields: [
                 {
-                    name: "firstName",
-                    type: "text"
-                },
-                {
-                    name: "lastName",
-                    type: "text"
-                },
-                {
-                    name: "phone",
-                    type: "text"
-                },
-                {
-                    name: "email",
-                    type: "email"
+                    name: "note",
+                    type: "textarea"
                 }
             ]
         }
