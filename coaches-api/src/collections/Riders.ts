@@ -1,9 +1,6 @@
 import { CollectionConfig } from "payload/types";
 import Levels from "../options/levels";
-import gender from "../options/gender";
 import Gender from "../options/gender";
-import Grade from "../options/grade";
-import RidingExperience from "../options/ridingExperience";
 
 const Riders: CollectionConfig = {
     slug: 'riders',
@@ -14,6 +11,11 @@ const Riders: CollectionConfig = {
         read: () => true
     },
     fields: [
+        {
+            name: "id",
+            type: "number",
+            required: true
+        },
         {
           name: "fullName",
           type: "text",
@@ -30,18 +32,13 @@ const Riders: CollectionConfig = {
             required: true
         },
         {
-            name: "birthdate",
+            name: "birtdate",
             type: "date"
         },
         {
             name: "gender",
             type: "select",
             options: Gender
-        },
-        {
-            name: "risingGrade",
-            type: "select",
-            options: Grade
         },
         {
             name: "plateNumber",
@@ -53,25 +50,8 @@ const Riders: CollectionConfig = {
             options: Levels
         },
         {
-            name: "ridingExperience",
-            type: 'select',
-            options: RidingExperience,
-            hasMany: true
-        },
-        {
-            name: "parent",
-            type: "relationship",
-            relationTo: "parents"
-        },
-        {
-            name: "notes",
-            type: "array",
-            fields: [
-                {
-                    name: "note",
-                    type: "textarea"
-                }
-            ]
+            name: "email",
+            type: 'text'
         }
     ]
 }

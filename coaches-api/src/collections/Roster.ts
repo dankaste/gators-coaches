@@ -1,4 +1,6 @@
 import { CollectionConfig } from "payload/types";
+import { fromTeamName } from "../options/levels";
+import { fromGender } from "../options/gender";
 import payload from "payload";
 import csv from "csvtojson"
 
@@ -26,34 +28,35 @@ const Roster: CollectionConfig = {
                         let existingRiderResults = await payload.find({
                             collection: 'riders',
                             where: {
-                                firstName: {
-                                    equals: entry["Player First Name"],
-                                },
-                                lastName: {
-                                    equals: entry["Player Last Name"]
+                                id: {
+                                    equals: entry["id"],
                                 }
                             }
                         });
                         let rider;
+                        const level = fromTeamName(entry["team"]);
                         if(existingRiderResults.docs) {
                             rider = existingRiderResults.docs[0]
                             await payload.update({
                                 collection: 'riders',
                                 id: rider.id,
                                 data: {
-                                    level: entry["Division Name"]
+                                    level: level
                                 }
                             })
                         } else {
                             rider = await payload.create({
                                 collection: 'riders',
                                 data: {
-                                    fullName: entry["Player First Name"] + " " + entry["Player Last Name"],
-                                    firstName: entry["Player First Name"],
-                                    lastName: entry["Player Last Name"],
-                                    level: entry["Division Name"],
-                                    birthdate: entry["Player Birth Date"],
-                                    plateNumber: entry["Race Plate Number"],
+                                    id: entry['id'],
+                                    fullName: entry["player_first_name"] + " " + entry["player_last_name"],
+                                    firstName: entry["player_first_name"],
+                                    lastName: entry["player_last_name"],
+                                    level: level,
+                                    birthdate: entry["birth_date"],
+                                    plateNumber: entry["number"],
+                                    gender: fromGender(entry["gender"]),
+                                    email: entry["parent1_email"]
                                 }
                             });
                         }

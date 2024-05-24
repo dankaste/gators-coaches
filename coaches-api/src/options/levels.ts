@@ -22,4 +22,8 @@ const Levels = [
     }
 ]
 
+export function fromTeamName(name:string) : string {
+    return Levels.find(l => name.includes(l.value)).value;
+}
+
 export default Levels;
